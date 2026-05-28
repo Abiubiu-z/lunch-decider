@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="中午吃什么？帮你随机决定午餐" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>中午吃什么</title>
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1 class="title">中午吃什么</h1>
+        <p class="subtitle">选择困难？让命运替你决定</p>
+        <p class="pool-count" id="pool-count">候选：加载中…</p>
+      </header>
+
+      <section class="filters" aria-label="筛选条件">
+        <div class="filter-group">
+          <span class="filter-label">菜系</span>
+          <div class="chips" id="category-chips"></div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">标签</span>
+          <div class="chips" id="tag-chips"></div>
+        </div>
+        <details class="mood-details">
+          <summary>心情偏好</summary>
+          <select id="mood-select" aria-label="心情偏好">
+            <option value="">不限</option>
+            <option value="heavy">想重口</option>
+            <option value="light_mood">想清淡</option>
+            <option value="fast">想快点</option>
+            <option value="treat">想犒劳自己</option>
+          </select>
+        </details>
+        <label class="toggle-row">
+          <input type="checkbox" id="allow-repeat" />
+          <span>允许今天重复推荐</span>
+        </label>
+        <button type="button" class="btn-text" id="reset-filters">重置筛选</button>
+      </section>
+
+      <section class="actions">
+        <button type="button" class="btn-primary" id="btn-decide">帮我决定</button>
+        <button type="button" class="btn-secondary" id="btn-wheel">转盘抽奖</button>
+      </section>
+
+      <section class="wheel-section hidden" id="wheel-section" aria-label="转盘">
+        <canvas id="wheel-canvas" width="320" height="320" role="img" aria-label="午餐转盘"></canvas>
+        <button type="button" class="btn-primary" id="btn-spin" disabled>开始转动</button>
+      </section>
+
+      <section class="result-section hidden" id="result-section" aria-live="polite">
+        <div class="result-card" id="result-card">
+          <p class="result-label">今天就吃</p>
+          <h2 class="result-name" id="result-name"></h2>
+          <p class="result-meta" id="result-meta"></p>
+          <div class="result-tags" id="result-tags"></div>
+          <p class="result-desc" id="result-desc"></p>
+          <div class="result-actions">
+            <button type="button" class="btn-primary" id="btn-confirm">就这个！</button>
+            <button type="button" class="btn-secondary" id="btn-another">换一个</button>
+          </div>
+        </div>
+      </section>
+
+      <p class="message hidden" id="message" role="alert"></p>
+
+      <footer class="footer">
+        <p>内置菜单 <span id="total-count">0</span> 道 · 纯本地运行</p>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
